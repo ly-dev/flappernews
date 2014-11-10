@@ -1,0 +1,6 @@
+## Eclipse ignore
+.settings/
+.project
+
+## nodejs ignore
+node_modules/
