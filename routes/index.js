@@ -68,20 +68,37 @@ router.put('/posts/:post/upvote', function(req, res, next) {
   });
 });
 
-/* Get all comments */
+/* POST save comment*/
 router.post('/posts/:post/comments', function(req, res, next) {
   var comment = new Comment(req.body);
   comment.post = req.post;
 
   comment.save(function(err, comment){
-    if(err){ return next(err); }
+    if(err){
+    	return next(err); 
+	}
 
     req.post.comments.push(comment);
     req.post.save(function(err, post) {
-      if(err){ return next(err); }
-
-      res.json(comment);
+    	if(err) {
+    		return next(err); 
+    	}
+    	
+    	res.json(comment);
     });
+  });
+});
+
+/* POST save post*/
+router.post('/posts', function(req, res, next) {
+  var post = new Post(req.body);
+
+  post.save(function(err, post){
+	if(err) {
+		return next(err); 
+	}
+
+	res.json(post);
   });
 });
 
