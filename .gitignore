@@ -4,3 +4,4 @@
 
 ## nodejs ignore
 node_modules/
+npm-debug.log
